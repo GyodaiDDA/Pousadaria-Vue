@@ -10,60 +10,59 @@
 <body>
 
   <div id="app">
-    <div class="top">
-      <span>Busca: </span>
-      <input v-model="searchField" type="text" placeholder="por cidade ou nome da pousada..." @input="searchApi">
+    <div>
+      <div class="search-bar">
+        <span>Busca:</span>
+        <input v-model="searchField" type="text" placeholder="por cidade ou nome da pousada..." @input="searchApi">
+      </div>
       <ul>
         <div v-if="innDetails.length === 0">
           <li v-for="inn, id in inns" :key="inn.id">
-            <h3 class="inline"><span class="uppercase">{{ inn.brand_name }}</span></h3>
+            <span class="uppercase">{{ inn.brand_name }}</span>
             <button v-on:click="getDetails(inn.id)" class="small">+</button><br>
           </li>
         </div>
       </ul>
         <div v-if="innDetails.id">
-          <h3><span class="uppercase">{{ innDetails.brand_name }}</h3></span>
-          <ul>
+          <h2><span class="uppercase">{{ innDetails.brand_name }}</h2></span>
+          <ul class="list-group">
             <li>Em {{ innDetails.city }}/{{ innDetails.state }}</li>
             <li class="description">{{ innDetails.description }}</li>
             <br>
-            <li v-if="innDetails.pet_friendly == true">Traga seu pet</li>
-            <li v-if="innDetails.wheelchair_accessible == true">Entrada com rampa</li>
-            <li>Avaliação média dos hospedes: {{ innDetails.avg_rating }}/5</li>
+            <li class="list-item" v-if="innDetails.pet_friendly == true">Traga seu pet</li>
+            <li class="list-item" v-if="innDetails.wheelchair_accessible == true">Entrada com rampa</li>
+            <li class="list-item">Avaliação média dos hospedes: {{ innDetails.avg_rating }}/5</li>
             <br>
-            <li>Check-in: {{ dateShow(innDetails.check_in) }}</li>
-            <li>Check-out: {{ dateShow(innDetails.check_out) }}</li>
-            <li>Aceita: {{ innDetails.payment_opt }}</li>
+            <li class="list-item">Check-in: {{ dateShow(innDetails.check_in) }}</li>
+            <li class="list-item">Check-out: {{ dateShow(innDetails.check_out) }}</li>
+            <li class="list-item">Aceita: {{ innDetails.payment_opt }}</li>
+            <br>
             <div v-if="roomsList" class="box">
-              <h4>Acomodações</h4>
-              <div v-for="room in roomsList" :key="room.id">
-                <p>
-                  <strong>{{ room.name }}</strong><br>{{ room.description }}
-                </p>
+              <h4><span class="uppercase">Acomodações</span></h4>
+              <div class="rooms" v-for="room in roomsList" :key="room.id">
                 <ul>
-                  <li>área: {{ room.size }}m²</li>
-                  <li>capacidade: {{ room.max_guests }} pessoas</li>
-                  <li>diária: R$ {{ room.base_price }}</li>
-                  <li>o quarto conta com:</li>
-                  <ul>
-                    <li v-if="room.tv == true">TV</li>
-                    <li v-if="room.bathroom == true">Suíte</li>
-                    <li v-if="room.balcony == true">Varanda</li>
-                    <li v-if="room.air_conditioning == true">Ar condicionado</li>
-                    <li v-if="room.wardrobe == true">Guarda-roupas</li>
-                    <li v-if="room.safe == true">Cofre</li>
-                    <li v-if="room.accessible == true">Quarto acessível</li>
-                    <h3>Faça sua reserva:</h3>
-                    <form @submit.prevent="makeReservation(room.id)">
-                      <label for="reservationForm.start_date">Entrada </label>
-                      <input type="date" v-model="reservationForm.start_date" required><br>
-                      <label for="reservationForm.end_date">Saída </label>
-                      <input type="date" v-model="reservationForm.end_date" required><br>
-                      <label for="reservationForm.guests">Número de hóspedes </label>
-                      <input type="number" v-model="reservationForm.guests" min="1" required>
-                      <button type="submit">Reservar</button>
-                    </form>
-                  </ul>
+                  <li class="list-item"><h3>{{ room.name }}</h3></li>
+                  <li class="list-item">área: {{ room.size }}m²</li>
+                  <li class="list-item">capacidade: {{ room.max_guests }} pessoas</li>
+                  <li class="list-item">diária: R$ {{ room.base_price }}</li>
+                  <li class="list-item">o quarto conta com:</li>
+                  <li class="list-item" v-if="room.tv == true">TV</li>
+                  <li class="list-item" v-if="room.bathroom == true">Suíte</li>
+                  <li class="list-item" v-if="room.balcony == true">Varanda</li>
+                  <li class="list-item" v-if="room.air_conditioning == true">Ar condicionado</li>
+                  <li class="list-item" v-if="room.wardrobe == true">Guarda-roupas</li>
+                  <li class="list-item" v-if="room.safe == true">Cofre</li>
+                  <li class="list-item" v-if="room.accessible == true">Quarto acessível</li>
+                  <h3>Faça sua reserva:</h3>
+                  <form @submit.prevent="makeReservation(room.id)">
+                    <label for="reservationForm.start_date">Entrada </label>
+                    <input type="date" v-model="reservationForm.start_date" required><br>
+                    <label for="reservationForm.end_date">Saída </label>
+                    <input type="date" v-model="reservationForm.end_date" required><br>
+                    <label for="reservationForm.guests">Número de hóspedes </label>
+                    <input type="number" v-model="reservationForm.guests" min="1" required><br>
+                    <button type="submit">Reservar</button>
+                  </form>
                 </ul>
                   
                 <br>

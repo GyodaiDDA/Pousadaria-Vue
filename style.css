@@ -1,0 +1,142 @@
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #addbcd;
+  color: #000000;
+  line-height: 1.5;
+  font-family: 'Calibri', 'Helvetica Neue', Helvetica;
+  padding: 20px;
+  font-size: 15px;
+}
+
+
+/* Formulários =================================================================  */
+span.uppercase {
+  padding-top: 20px;
+}
+.uppercase {
+  text-transform: uppercase;
+}
+.peq {
+  font-size: small;
+}
+
+/* top-menu ================================================================= */
+
+li {
+  align-items: baseline;
+  margin-top: 20px;
+  margin-right: 20px;
+  list-style-type: none;
+  font-size: medium;
+  display: inline; 
+}
+
+input {
+  align-items: baseline;
+  padding: 5px 20px;
+  background-color: #028090; 
+  border:#000000; 
+  border-style: dotted;
+  border-width: 1px;
+  cursor: pointer; 
+  border-radius: 5px;
+  margin-right: 20px 20px 20px 20px;
+}
+
+button{
+  background-color: #ffffff;
+  border-style: dotted;
+  border-width: 1px; 
+  align-items: baseline;
+  display: inline; 
+  text-align: center; 
+  text-decoration: none;
+  cursor: pointer;
+  padding: 6px;
+  border-radius: 5px;
+  margin-left: 10px;
+}
+
+button:hover {
+  background-color:#ff8360;
+}
+
+
+button.small {
+  align-items: middle;
+  background-color: #ffffff50;
+  color:#028090;
+}
+
+
+/* Títulos ================================================================= */
+h1, h2, h3, h5, h6 {
+  color: #028090;
+  margin-bottom: 30px;
+  margin-top: 30px;
+  margin-left: 5px;
+}
+
+h1 {
+  font-size: 2.5em; 
+  margin-bottom: 0em;
+}
+
+h2 {
+  font-size: 2em;
+}
+
+h3 {
+  margin-top: 30px;
+  margin-left: 40px;
+  font-size: 1.3em;
+  align-items: middle;
+}
+
+h3.inline {
+  display: inline;
+}
+
+h4 {
+  font-size: 1.3em;
+  font-style: italic;
+}
+
+h5 {
+  font-size: 1em;
+}
+
+h6 {
+  font-size: 0.9em;
+}
+
+
+
+/* Texto ================================================================= */
+a:hover {
+  color: #eeff00;
+  text-decoration: none;
+}
+
+a {
+  font-weight: bold;
+  color: #00f7ff80;
+}
+
+strong {
+  font-size: smaller;
+  text-transform: uppercase;
+  font-weight: bold;
+  color: #f4f4f477;
+}
+
+
+.description {
+  font-style: italic;
+  font-size: small;
+  text-transform: uppercase;
+  vertical-align: middle;
+}
+
+

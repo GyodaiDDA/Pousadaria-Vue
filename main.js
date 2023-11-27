@@ -71,8 +71,18 @@ const app = Vue.createApp({
         console.error('Falha na tentativa de reserva', error);
         alert('Erro na tentativa de fazer reserva. Tente novamente mais tarde.')
       }
-    }
+    },
+
+    dateShow(checkdate) {
+      const date = new Date(checkdate);
+      return date.toLocaleString('pt-BR', { 
+        /*weekday: 'long', year: 'numeric', month: 'long', day: 'numeric',*/
+        hour: '2-digit', minute: '2-digit' 
+      });
+    },
   },
+
+  
 
   async mounted() {
     try {

@@ -4,24 +4,25 @@
   	<meta charset="UTF-8">
   	<meta name="viewport" content="width=device-width, initial-scale=1.0">
   	<title>Pousadaria</title>
+    <link rel="stylesheet" href="style.css">
     
 </head>
 <body>
 
   <div id="app">
-    <div id="">
+    <div class="top">
       <span>Busca: </span>
       <input v-model="searchField" type="text" placeholder="por cidade ou nome da pousada..." @input="searchApi">
       <ul>
         <div v-if="innDetails.length === 0">
           <li v-for="inn, id in inns" :key="inn.id">
-            {{ inn.id }}. {{ inn.brand_name }}
-            <button v-on:click="getDetails(inn.id)">mais >></button>
+            <h3 class="inline"><span class="uppercase">{{ inn.brand_name }}</span></h3>
+            <button v-on:click="getDetails(inn.id)" class="small">+</button><br>
           </li>
         </div>
       </ul>
         <div v-if="innDetails.id">
-          <h3>{{ innDetails.brand_name }}</h3>
+          <h3><span class="uppercase">{{ innDetails.brand_name }}</h3></span>
           <ul>
             <li>Em {{ innDetails.city }}/{{ innDetails.state }}</li>
             <li class="description">{{ innDetails.description }}</li>
@@ -30,10 +31,10 @@
             <li v-if="innDetails.wheelchair_accessible == true">Entrada com rampa</li>
             <li>Avaliação média dos hospedes: {{ innDetails.avg_rating }}/5</li>
             <br>
-            <li>Check-in: {{ innDetails.check_in }}</li>
-            <li>Check-out: {{ innDetails.check_out }}</li>
+            <li>Check-in: {{ dateShow(innDetails.check_in) }}</li>
+            <li>Check-out: {{ dateShow(innDetails.check_out) }}</li>
             <li>Aceita: {{ innDetails.payment_opt }}</li>
-            <div v-if="roomsList">
+            <div v-if="roomsList" class="box">
               <h4>Acomodações</h4>
               <div v-for="room in roomsList" :key="room.id">
                 <p>
@@ -52,18 +53,19 @@
                     <li v-if="room.wardrobe == true">Guarda-roupas</li>
                     <li v-if="room.safe == true">Cofre</li>
                     <li v-if="room.accessible == true">Quarto acessível</li>
-                    <button v-on:click="makeReservation(room.id)">Quero reservar este quarto!</button>
+                    <h3>Faça sua reserva:</h3>
+                    <form @submit.prevent="makeReservation(room.id)">
+                      <label for="reservationForm.start_date">Entrada </label>
+                      <input type="date" v-model="reservationForm.start_date" required><br>
+                      <label for="reservationForm.end_date">Saída </label>
+                      <input type="date" v-model="reservationForm.end_date" required><br>
+                      <label for="reservationForm.guests">Número de hóspedes </label>
+                      <input type="number" v-model="reservationForm.guests" min="1" required>
+                      <button type="submit">Reservar</button>
+                    </form>
                   </ul>
                 </ul>
-                  <br><form @submit.prevent="makeReservation(room.id)">
-                    <label for="reservationForm.start_date">Entrada </label>
-                    <input type="date" v-model="reservationForm.start_date" required><br>
-                    <label for="reservationForm.end_date">Saída </label>
-                    <input type="date" v-model="reservationForm.end_date" required><br>
-                    <label for="reservationForm.guests">Número de hóspedes </label>
-                    <input type="number" v-model="reservationForm.guests" min="1" required>
-                    <button type="submit">Reservar</button>
-                </form>
+                  
                 <br>
               </div>
             </div>
